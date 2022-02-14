@@ -1,0 +1,97 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    background-color: #F8F6F1;
+}
+
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.header-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+
+
+.logo-container {
+    background-color: #F8F6F1;
+    transition: 0.3s;
+}
+
+.logo-container:hover {
+    padding: 0 10px;
+    transition: 0.3s;
+}
+
+.rss-svg-logo {
+    display: inline-block;
+    height: 55.5px;
+    width: 150px;
+    background: url("./assets/svg/rs_school_js.svg") no-repeat;
+    transition: 0.3s;
+}
+a.rss-svg-logo:hover{
+    background-color: #F8F6F1;
+    transition: 0.3s;
+}
+
+/* Move footer to bottom of the screen*/
+body footer {
+    margin-top: auto;
+}
+
+.header-background {
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(63,63,76,1) 100%);
+}
+
+.footer-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.footer-layout .data-container {
+    color: #F8F6F1;
+}
+
+.footer-layout a {
+    text-decoration: none;
+    color: #F8F6F1;
+}
+
+
