@@ -90,6 +90,11 @@ function openFullscreen(event) {
 }
 
 function buildGallery(images, totalImages) {
+    if (images.length === 0)
+    {
+        displayError("Изображения не найдены");
+        return;
+    }
     let gallery = document.querySelector('.gallery');
     removeLoadingOverlay(gallery);
     gallery.innerHTML = "";
