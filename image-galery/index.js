@@ -10,9 +10,25 @@ function processKeysOnSearch(event) {
         loadImages(document.querySelector('input.search').value);
 }
 
+const loadingOverlay = `
+    <div class="placeholder-image">
+        <div class="loader">Loading...</div>
+    </div>
+`;
+
+function addLoadingOverlay(container) {
+    container.innerHTML = "";
+    container.insertAdjacentHTML('beforeend', loadingOverlay.repeat(30));
+}
+
+function removeLoadingOverlay(container) {
+    container.querySelectorAll('.placeholder-image').forEach(x => x.remove());
+}
+
 function loadImages(query, page = 1) {
     if (query.length < 2)
         return;
+    addLoadingOverlay(document.querySelector('.gallery'));
     fetch('https://env2k6glw6z34ld.m.pipedream.net?' + new URLSearchParams({
         'query': query,
         'page': page
@@ -28,12 +44,11 @@ function displayError(error) {
 
 }
 
-const imageHtml = `
-    <img src="" alt="">
-`;
+
 
 function buildGallery(images, totalImages) {
     let gallery = document.querySelector('.gallery');
+    removeLoadingOverlay(gallery);
     gallery.innerHTML = "";
     images.forEach(x => {
         const image = document.createElement('img');
