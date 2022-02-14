@@ -39,12 +39,49 @@ function loadImages(query, page = 1) {
     .catch(er => displayError(er));
 }
 
+
+const errorHtml = `
+    <div class="error-message">
+        <p>По вашему запросу не найдены изображения (или сервер по какой-то причине недоступен).
+        Попробуйте использовать другой запрос или выполните его позже.</p>
+        <p>We could not found images relevant to your query (or there is some kind of server error).
+        Please try again later or use different keywords for search</p>
+        <span class="custom-icons server-error"></span>
+    </div>
+`;
+
 function displayError(error) {
     console.log(error);
-
+    let gallery = document.querySelector('.gallery');
+    gallery.innerHTML = "";
+    gallery.insertAdjacentHTML('beforeend', errorHtml);
 }
 
+const modalHtml = `
+    <div class="overlay">
+        <img class="fs-img" src="" alt="">
+    </div>
+`;
 
+
+
+function quitFSonEscape(event, overlay) {
+    if (event.code === 'Escape') {
+        overlay.remove();
+        document.removeEventListener('keydown', quitFSonEscape);
+    }
+}
+
+function openFullscreen(event) {
+    let image = event.target;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    let modalImage = document.body.querySelector('.overlay img');
+    modalImage.src = image.attributes['data-full'];
+    modalImage.alt = image.alt;
+    let overlay = document.body.querySelector('.overlay');
+    overlay.addEventListener('click', () => {overlay.remove();document.removeEventListener('keydown', quitFSonEscape);});
+    document.addEventListener('keydown', ev => quitFSonEscape(ev, overlay));
+}
 
 function buildGallery(images, totalImages) {
     let gallery = document.querySelector('.gallery');
@@ -55,6 +92,7 @@ function buildGallery(images, totalImages) {
         image.src = x.normal;
         image.attributes['data-full'] = x.full;
         image.alt = x.alt;
+        image.addEventListener('click', openFullscreen);
         gallery.append(image);
     });
 }
