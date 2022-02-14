@@ -1,4 +1,10 @@
 
+console.log(`
+    Выполнены все пункты. Дополнительно реализовано открытие изображений на весь экран.
+    При открытии страницы загружаются изображения случайной тематики из определённого набора.
+    Когда открыта картинка (на весь экран) можно кликнуть в любом месте, чтобы закрыть, или нажать Escape.
+`);
+
 const seeds = ['cat', 'dog', 'mountain', 'river', 'sea', 'red', 'blue', 'dragon', 'rolling', 'scopes', 'school', 'black', 'fire', 'tree'];
 
 document.addEventListener('DOMContentLoaded', function () {
