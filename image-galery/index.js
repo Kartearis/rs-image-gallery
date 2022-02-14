@@ -106,7 +106,8 @@ function buildGallery(images, totalImages) {
 document.addEventListener('DOMContentLoaded', function () {
     let search = document.querySelector('input.search');
     search.addEventListener('keydown', processKeysOnSearch);
-    document.querySelector('button#search').addEventListener('click', x => loadImages(search.value))
+    document.querySelector('button#search').addEventListener('click', x => loadImages(search.value));
+    search.focus();
 });
 
 document.addEventListener('DOMContentLoaded', function () {
